@@ -83,6 +83,7 @@
                     }
                     if (this.questionNum >= this.questions.length) {
                         document.body.style.background = "url(images/together.jpg) center/cover no-repeat";
+                        this.addCookie("currentQuestion", 0)
                         this.showBox = false;
                     }
                 },
