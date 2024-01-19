@@ -90,6 +90,7 @@
                     this.passAnyway = false;
                     this.currentQuestion = this.questions[this.questionNum]
                     this.inputValue = ''
+                    this.addCookie("currentQuestion", this.currentQuestion)
                 },
                 addCookie(name, value) {
                     const date = new Date();
@@ -115,7 +116,6 @@
             mounted() {
                 this.currentQuestion = parseInt(this.getCookie("currentQuestion")) || 0;
                 this.setCurrent()
-                console.log("currentQuestion", this.currentQuestion)
             }
         }).mount('#app')
     </script>
