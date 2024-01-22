@@ -26,8 +26,23 @@
                 <button @click="stage3">See your prize</button>
             </div>
             <div v-else>
-                <p class="winner">You win a trip to France with your whole family!</p>
-                <p class="winner">for your 70th birthday</p>
+                <h1 class="winner">You win...</h1>
+                <div class="bigbox">
+                    <p class="question winner">Where?</p>
+                    <p class="winner">A trip to France</p>
+                </div>
+                <div class="bigbox">
+                    <p class="question winner">When?</p>
+                    <p class="winner">Your 70th Birthday</p>
+                </div>
+                <div class="bigbox">
+                    <p class="question winner">How do I get there?</p>
+                    <p class="winner">Your favourite train</p>
+                </div>
+                <div class="bigbox">
+                    <p class="question winner">Who's going to be there?</p>
+                    <p class="winner">Your whole family!</p>
+                </div>
             </div>
         </div>
     </div>
@@ -90,7 +105,7 @@
                         this.popupToast('Incorrect. Try again!', true);
                     }
                     if (this.questionNum >= this.questions.length) {
-                        document.body.style.background = "url(images/together2.jpg) center/cover no-repeat";
+                        document.body.style.background = "url(images/collage.jpg) center/cover no-repeat";
                         this.addCookie("currentQuestion", 0)
                         this.stage = 2;
                     }
@@ -144,6 +159,22 @@
         
         #app {
             text-align: center;
+        }
+
+        .bigbox {
+            margin: 20px;
+            align-items: center !important;
+            justify-content: space-around !important;
+            text-align: center;
+        }
+
+        .bigbox .question {
+            font-weight: bold;
+            margin-right: 10px;
+          }
+
+        .bigbox p {
+            margin: 0;
         }
         
         .box {
