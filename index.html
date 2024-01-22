@@ -12,7 +12,7 @@
             <div v-show="showToast" class="toast" id="toastElement">
                 {{ toastMessage }}
             </div>
-            <div class="box" v-if="showBox">
+            <div class="box" v-if="stage === 1">
                 <img v-if="showImage" :src="'images/' + currentQuestion.image" alt="">
                 <p>{{ currentQuestion.question }}</p>
                 <div class="input-container">
@@ -20,9 +20,14 @@
                     <button @click="checkInput">Submit</button>
                 </div>
             </div>
-            <div v-else>
+            <div v-else-if="stage === 2">
                 <h1>Congratulations!</h1>
-                <p class="winner">You win a trip to France with your whole family for your 70th birthday!</p>
+                <p class="winner">You win.</p>
+                <button @click="stage3">See your prize</button>
+            </div>
+            <div v-else>
+                <p class="winner">You win a trip to France with your whole family!</p>
+                <p class="winner">for your 70th birthday</p>
             </div>
         </div>
     </div>
@@ -31,7 +36,7 @@
         Vue.createApp({
             data() {
                 return {
-                    showBox: true,
+                    stage: 1,
                     showImage: true,
                     inputValue: '',
                     toastMessage: 'Well Done',
@@ -56,6 +61,9 @@
                 }
             },
             methods: {
+                stage3() {
+                    this.stage = 3;
+                },
                 popupToast(message, badToast) {
                     this.toastMessage = message || 'Well Done';
                     const toastElement = document.getElementById('toastElement');
@@ -82,9 +90,9 @@
                         this.popupToast('Incorrect. Try again!', true);
                     }
                     if (this.questionNum >= this.questions.length) {
-                        document.body.style.background = "url(images/together.jpg) center/cover no-repeat";
+                        document.body.style.background = "url(images/together2.jpg) center/cover no-repeat";
                         this.addCookie("currentQuestion", 0)
-                        this.showBox = false;
+                        this.stage = 2;
                     }
                 },
                 setCurrent() {
